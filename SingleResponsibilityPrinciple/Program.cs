@@ -9,11 +9,12 @@ namespace SingleResponsibilityPrinciple
     {
         static void Main(string[] args)
         {
-            var tradeStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("SingleResponsibilityPrinciple.trades.txt");
+            //var tradeStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("SingleResponsibilityPrinciple.trades.txt");
 
             var logger = new ConsoleLogger();
             var tradeValidator = new SimpleTradeValidator(logger);
-            var tradeDataProvider = new StreamTradeDataProvider(tradeStream);
+            //var tradeDataProvider = new StreamTradeDataProvider(tradeStream);
+            var tradeDataProvider = new URLTradeDataProvider("http://faculty.css.edu/tgibbons/trades4.txt");
             var tradeMapper = new SimpleTradeMapper();
             var tradeParser = new SimpleTradeParser(tradeValidator, tradeMapper);
             var tradeStorage = new AdoNetTradeStorage(logger);
